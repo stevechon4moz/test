@@ -1,0 +1,23 @@
+Answers from Steve C.
+
+Note: Due to time constraints, I decided to simply write out my answers and keep it simple. I would typically use Tableau to generate any visuals but did not have enough time. The work took me exactly 2 hours.
+
+1. The dataset contains industry, geography, browser, session time per month and prior month amount paid by Moz customers. A sizeable proportion of the population are in marketing, followed by healthcare and software. Traffic largely originates from North America (US and Canada) and also includes countries such as the UK, Pakistan, Greece, India, Spain, France and Spain (in no particular order). Chrome was the most widely used browser, with roughly 50% of visitors using it. The average "typical" user spent just over 20 minutes on the site over the past month with a small number of users on it significantly longer (eg., well over 80 minutes).
+
+2. Please refer to the Python Notebook. The general steps I took:
+A. Frequency distribution to get a general picture of the data
+B. Look for any relationships between features and between features and target variable (check for collinearity)
+C. Convert/encode data in proper format (prep for model)
+D. Fit model and make prediction
+
+Note: I am assuming you are looking for a simple or multiple linear regression model and not a higher degree polynomial regression model which is technically a linear model. I originally hoped to create a simple linear model using only session_time_prior_month_seconds to predict prior_month_paid, but the results were not great. There appeared to be little relationship between the features (categorical and continuous) so I decided to use them all (except for the ID of course) and go with a multiple linear regression approach. The categorical variables were one hot encoded so that they could be fed into the linear regression model.
+
+3. Based on looking at the graph and model predictions, it's very clear there is underfitting. The linear model suggests that those that spend more time on the site is more likely to pay more.
+
+4. The performance is not good. The R^2 value is relatively low (higher generally better). There is also indication of high bias. Looking at the predictions against the test data (row by row), it's obvious the prior_month_paid prediction is not accurate. 
+
+5. I would recommend to the business the following:
+A. Collect/identify additional data points (eg., endpoint device information, mobile/laptop/desktop details, etc)
+B. Enrich data by leveraging 3rd party sources (eg., IP address intelligence, email domain intelligence, etc.)
+C. Try non-linear model approaches (perhaps use polynomial), including classical machine learning and deep learning methods 
+D. Related to A., collect behavioral data for each session (eg., what is the user doing? what are they clicking on? how long are they on page X? are the users on the site during local business hours?)
